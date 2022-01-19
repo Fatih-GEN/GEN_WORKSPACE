@@ -21,9 +21,10 @@
 void gen_main(void)
 {
 
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 	while(1)
 	{
-
+		button_all();
 
 	}
 }
