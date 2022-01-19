@@ -25,11 +25,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "genemek.h"
+#include "gen_struct.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+gen_struct gen_s;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -55,7 +56,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+ uint8_t can_rx_buffer[8] = {0,0,0,0,0,0,0,0};
+	 uint8_t can_tx_buffer[8] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};
+	CAN_TxHeaderTypeDef pTxHeader;
+	CAN_RxHeaderTypeDef pRxHeader;
 /* USER CODE END 0 */
 
 /**
@@ -142,6 +146,22 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+	{
+
+		HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pRxHeader, can_rx_buffer);
+
+			  		   	  if(can_rx_buffer[5]==0x05)
+			  		   	  {
+			  		   		  gen_s.count2++;
+			  		   		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+	//		  		   		led_on();
+			  		   	  }
+			  		   		 // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+			  //	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+
+
+	}
 
 /* USER CODE END 4 */
 
