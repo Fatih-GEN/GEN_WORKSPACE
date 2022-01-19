@@ -18,6 +18,8 @@
 #include "tim.h"
 #include "can.h"
 
+gen_struct gen_s;
+
 void gen_main(void)
 {
 
