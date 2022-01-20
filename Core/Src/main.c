@@ -106,6 +106,12 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  gen_main();
 
+	  r_num_8();
+	  l_num_8();
+	  display_up();
+	  HAL_Delay(1000);
+
+
   }
   /* USER CODE END 3 */
 }

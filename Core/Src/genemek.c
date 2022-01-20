@@ -77,7 +77,7 @@ void gen_main(void)
 			 	  	  	  		  	  	  	  uint32_t ID_NUM = *(__IO uint16_t*) (Robot_Num_Flash_Add);
 			 	  	  	 	 	  	  	  	  	  	  }
 
-			 	  	  	 display_all();
+
 
 	}
 

@@ -20,7 +20,7 @@
 #include "tim.h"
 #include "can.h"
 
-
+// LED Driver ports set and define
 #define data_on    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET)
 #define data_off   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET)
 #define latch_on   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET)
@@ -33,6 +33,18 @@
 #define led_on   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 #define led_off   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 
+
+//typedef struct{
+//
+//char Rseg_num[10]={"0x01DC0000","0x000C0000","0x00F80000","0x007C0000","0x012C0000","0x01740000","0x00F70000","0x001C0000","0x01FC0000","0x017C0000"};
+//char Lseg_num[10]={"0xEE000000","0x06000000","0x7C000000","0x3E000000","0x96000000","0xBA000000","0xFB000000","0x0E000000","0xFE0000","0xBE000000"};
+//char up=0x000E0000;
+//char down=0x000C0000;
+//char busy=0x00000880;
+//char mt=0x00000200;
+//char ns=0x00000500;
+//
+//}display_hexadecimal;
 
 void display_all(void)
 {
@@ -57,28 +69,21 @@ void MBI5026_SendData(uint32_t data){
 //		HAL_GPIO_WritePin(MBI5026_CLK_PORT,MBI5026_CLK_PIN,GPIO_PIN_RESET);
 		clk_off;
 
-
-
 		if (((data>>bit_index)&0x0001) == 0){
 
 //			HAL_GPIO_WritePin(MBI5026_SDI_PORT,MBI5026_SDI_PIN,GPIO_PIN_RESET);
 			data_off;
-
 		}
 		else {
 //			HAL_GPIO_WritePin(MBI5026_SDI_PORT,MBI5026_SDI_PIN,GPIO_PIN_SET);
 			data_on;
-
 		}
 //		__nop();
 //		HAL_GPIO_WritePin(MBI5026_CLK_PORT,MBI5026_CLK_PIN,GPIO_PIN_SET);
 		clk_on;
-
 	}
 //	HAL_GPIO_WritePin(MBI5026_LE_PORT,MBI5026_LE_PIN,GPIO_PIN_SET);
 	latch_on;
-
-
 //	HAL_GPIO_WritePin(MBI5026_OE_PORT,MBI5026_OE_PIN,GPIO_PIN_RESET);
 //	oe_on;
 	oe_off
@@ -101,6 +106,8 @@ void MBI5026_Display(uint8_t _index){
 void MBI5026_Off(uint8_t _index){
 	MBI5026_SendData(0xFFFF & (~(1<<_index)));
 }
+
+
 
 void num_18(void)
 {
