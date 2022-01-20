@@ -13,7 +13,7 @@
 #include "gen_canbus.h"
 #include "gen_flash.h"
 #include "gen_struct.h"
-//#include "gen_display.h"
+#include "gen_display.h"
 /* include st header file*/
 #include"gpio.h"
 #include "tim.h"
@@ -57,7 +57,7 @@ void gen_main(void)
 		//branchxx testing for merge
 		// branchyy testing
 
-//		num_10();
+		num_10();
 		gen_s.current_time = HAL_GetTick();
 
 		// button işlemi her 10 ms de bir kontrol edilir
