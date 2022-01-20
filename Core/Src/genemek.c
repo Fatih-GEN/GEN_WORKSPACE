@@ -13,6 +13,7 @@
 #include "gen_canbus.h"
 #include "gen_flash.h"
 #include "gen_struct.h"
+//#include "gen_display.h"
 /* include st header file*/
 #include"gpio.h"
 #include "tim.h"
@@ -52,6 +53,7 @@ void gen_main(void)
 
 	while(1)
 	{
+//		num_10();
 		gen_s.current_time = HAL_GetTick();
 
 		// button işlemi her 10 ms de bir kontrol edilir
@@ -59,11 +61,26 @@ void gen_main(void)
 			 	  	  	  	  	  {
 			 	  	  	  		  	  gen_s.last_time_button = HAL_GetTick(); // zamanı günceller
 			 	  	  	  	  		  button_all();
+
 			 	  	  	  	  	  }
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_canbus > CANBUS_INTERVAL )
 			 	  	  	  	  	  	  {
 			 	  	  	  		  	  	  gen_s.last_time_canbus= HAL_GetTick(); // zamanı günceller
-			 	  	  	  		  	  	  HAL_CAN_AddTxMessage(&hcan, &pTxHeader, can_tx_buffer, &gen_s.pTxMailbox); // tx fonksiyonu
+//			 	  	  	  		  		  for(int _index =0; _index<25;_index++)
+//			 	  	  	  		  		  {
+			 	  	  	  		  			  gen_s.count2++;
+
+//			 	  	  	  		  		num_18();
+
+
+
+
+
+
+
+
+//			 	  	  	  		  		  }
+//			 	  	  	  		  	  	  HAL_CAN_AddTxMessage(&hcan, &pTxHeader, can_tx_buffer, &gen_s.pTxMailbox); // tx fonksiyonu
 			 	  	  	  		  	  	  gen_s.count3++;
 			 	  	  	  	  	  	  }
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_flash > FLASH_INTERVAL )
