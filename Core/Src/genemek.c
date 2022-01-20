@@ -23,8 +23,8 @@ gen_struct gen_s;
 
 
 // task ların kaç saniyede bir işlem göreceği ms cinsinden buradan ayarlanır
-#define BUTTON_INTERVAL   10 // interval in ms
-#define CANBUS_INTERVAL   500 // 500 ms de bir tx işlemi için
+#define BUTTON_INTERVAL   1 // interval in ms
+#define CANBUS_INTERVAL   1500 // 500 ms de bir tx işlemi için
 #define FLASH_INTERVAL	5000 // 1 sn flash write read
 // display için eklenecek
 
@@ -57,7 +57,7 @@ void gen_main(void)
 		//branchxx testing for merge
 		// branchyy testing
 
-		;
+
 		num_10();
 		gen_s.current_time = HAL_GetTick();
 
@@ -74,6 +74,7 @@ void gen_main(void)
 //			 	  	  	  		  		  for(int _index =0; _index<25;_index++)
 //			 	  	  	  		  		  {
 			 	  	  	  		  			  gen_s.count2++;
+			 	  	  	  		  			  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
 
 //			 	  	  	  		  		num_18();
 
