@@ -14,6 +14,7 @@
 #include "gen_canbus.h"
 #include "gen_flash.h"
 #include "gen_struct.h"
+#include "gen_display.h"
 /* include st header file*/
 #include"gpio.h"
 #include "tim.h"

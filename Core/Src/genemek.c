@@ -13,6 +13,7 @@
 #include "gen_canbus.h"
 #include "gen_flash.h"
 #include "gen_struct.h"
+#include "gen_display.h"
 /* include st header file*/
 #include"gpio.h"
 #include "tim.h"
@@ -23,7 +24,7 @@ gen_struct gen_s;
 
 // task ların kaç saniyede bir işlem göreceği ms cinsinden buradan ayarlanır
 #define BUTTON_INTERVAL   10 // interval in ms
-#define CANBUS_INTERVAL   500 // 500 ms de bir tx işlemi için
+#define CANBUS_INTERVAL   1500 // 500 ms de bir tx işlemi için
 #define FLASH_INTERVAL	5000 // 1 sn flash write read
 #define DISPLAY_INTERVAL 5	// 5 ms display time
 // display için eklenecek
@@ -53,6 +54,7 @@ void gen_main(void)
 
 	while(1)
 	{
+		num_13();
 		gen_s.current_time = HAL_GetTick();
 
 		// button işlemi her 10 ms de bir
@@ -64,7 +66,8 @@ void gen_main(void)
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_canbus > CANBUS_INTERVAL )
 			 	  	  	  	  	  	  {
 			 	  	  	  		  	  	  gen_s.last_time_canbus= HAL_GetTick(); // zamanı günceller
-			 	  	  	  		  	  	  HAL_CAN_AddTxMessage(&hcan, &pTxHeader, can_tx_buffer, &gen_s.pTxMailbox); // tx fonksiyonu
+//			 	  	  	  		  	  	  HAL_CAN_AddTxMessage(&hcan, &pTxHeader, can_tx_buffer, &gen_s.pTxMailbox); // tx fonksiyonu
+			 	  	  	  		   HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
 			 	  	  	  		  	  	  gen_s.count3++;
 			 	  	  	  	  	  	  }
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_display > DISPLAY_INTERVAL )
