@@ -22,39 +22,72 @@
 
 #define button_press_time 100
 #define led_yan_time      3000
+#define display_time 	  1500
 
 void menu(void)
 {
+	uint16_t display_count = 1500;
 	if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8) == 0 )  // basıldı demek
 		{
 			buzzer_on();
 			HAL_Delay(button_press_time);
 			buzzer_off();
-			led_on();
-			HAL_Delay(led_yan_time);
-			led_off();
+
+//			led_on();
+//			HAL_Delay(led_yan_time);
+//			led_off();
+			while(display_count>0)
+			{
+				display_up();
+				display_down();
+				display_count--;
+
+			}
 
 		}
 }
 
 void up(void)
 {
+
+	uint16_t display_count = 1500;
+
 	if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == 0 )
 		{
+
 			buzzer_on();
 			HAL_Delay(button_press_time);
 			buzzer_off();
+
+			while(display_count>0)
+			{
+				display_up();
+				display_count--;
+
+			}
+
 			led_on(); // basıldı demek
 		}
 }
 
 void down(void)
 {
+	uint16_t display_count = 1500;
 	if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == 0 )
 		{
 			buzzer_on();
 			HAL_Delay(button_press_time);
 			buzzer_off();
+
+			while(display_count>0)
+			{
+				display_down();
+				display_count--;
+
+			 }
+
+
+
 			led_off(); // basıldı demek
 		}
 }
