@@ -49,7 +49,7 @@ void up(void)
 			HAL_Delay(button_press_time);
 			buzzer_off();
 
-//			display_up();
+			display_up();
 
 
 			led_on(); // basıldı demek
@@ -63,7 +63,7 @@ void down(void)
 			buzzer_on();
 			HAL_Delay(button_press_time);
 			buzzer_off();
-//			display_down();
+			display_down();
 
 
 			led_off(); // basıldı demek
