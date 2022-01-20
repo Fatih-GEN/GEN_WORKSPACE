@@ -55,6 +55,7 @@ void gen_main(void)
 	{
 
 		//branchxx testing for merge
+		// branchyy testing
 
 //		num_10();
 		gen_s.current_time = HAL_GetTick();
