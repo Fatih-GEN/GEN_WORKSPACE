@@ -54,7 +54,7 @@ void gen_main(void)
 	{
 		gen_s.current_time = HAL_GetTick();
 
-		// button işlemi her 10 ms de bir kontrol edilir
+		// button işlemi her 10 ms de bir
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_button > BUTTON_INTERVAL )
 			 	  	  	  	  	  {
 			 	  	  	  		  	  gen_s.last_time_button = HAL_GetTick(); // zamanı günceller
