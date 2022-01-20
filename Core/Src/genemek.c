@@ -25,6 +25,7 @@ gen_struct gen_s;
 #define BUTTON_INTERVAL   10 // interval in ms
 #define CANBUS_INTERVAL   500 // 500 ms de bir tx işlemi için
 #define FLASH_INTERVAL	5000 // 1 sn flash write read
+#define DISPLAY_INTERVAL 5	// 5 ms display time
 // display için eklenecek
 
 
@@ -47,7 +48,7 @@ void gen_main(void)
 	gen_s.last_time_button 	= HAL_GetTick(); // burası mevcut ms yi verir
 	gen_s.last_time_canbus  = HAL_GetTick(); // burası mevcut ms yi verir
 	gen_s.last_time_flash 	= HAL_GetTick(); // burası mevcut ms yi verir
-
+	gen_s.last_time_display	= HAL_GetTick(); // burası mevcut ms yi verir
 
 
 	while(1)
@@ -66,6 +67,12 @@ void gen_main(void)
 			 	  	  	  		  	  	  HAL_CAN_AddTxMessage(&hcan, &pTxHeader, can_tx_buffer, &gen_s.pTxMailbox); // tx fonksiyonu
 			 	  	  	  		  	  	  gen_s.count3++;
 			 	  	  	  	  	  	  }
+			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_display > DISPLAY_INTERVAL )
+			 	  	  	  	  	  {
+			 	  	  				 	  	  	  		  	  	  gen_s.last_time_display= HAL_GetTick(); // zamanı günceller
+			 	  	  				 	  	  	  		  	  	  num_12();
+
+			 	  	  			  }
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_flash > FLASH_INTERVAL )
 			 	  	  	 	 	  	  	  	  	  	  {
 			 	  	  	  		  	  	  gen_s.last_time_flash= HAL_GetTick(); // zamanı günceller

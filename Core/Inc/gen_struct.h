@@ -16,6 +16,8 @@ typedef struct
 	uint32_t last_time_button   ;
 	uint32_t last_time_canbus	;
 	uint32_t last_time_flash    ;
+	uint32_t last_time_display  ;
+
 	/*her bir süre
 	uint32_t BUTTON_INTERVAL	;
 	uint32_t CANBUS_INTERVAL	;
