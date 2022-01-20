@@ -56,6 +56,15 @@ void gen_main(void)
 	{
 		gen_s.current_time = HAL_GetTick();
 
+
+
+		uint32_t sayi=0x012C0000;   // Sağ segment için 4 sayısını hexadecimal olarak atadım.
+
+		MBI5026_SendData(sayi);    // sedndata fonksiyonuna direkt hexadecimal sayı yazdırdım.
+
+
+
+
 		// button işlemi her 10 ms de bir kontrol edilir
 			 	  	  	  	  if(gen_s.current_time - gen_s.last_time_button > BUTTON_INTERVAL )
 			 	  	  	  	  	  {

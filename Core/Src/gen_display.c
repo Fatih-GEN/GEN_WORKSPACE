@@ -53,6 +53,7 @@ void display_all(void)
 
 	clk_on;
 }
+
 void MBI5026_SendData(uint32_t data){
 	uint8_t bit_index;
 	//HAL_GPIO_WritePin(MBI5026_OE_PORT,MBI5026_OE_PIN,GPIO_PIN_SET);
@@ -68,8 +69,8 @@ void MBI5026_SendData(uint32_t data){
 
 //		HAL_GPIO_WritePin(MBI5026_CLK_PORT,MBI5026_CLK_PIN,GPIO_PIN_RESET);
 		clk_off;
-
-		if (((data>>bit_index)&0x0001) == 0){
+      // and işlemi için 32 bitlik 1 yazdırdık
+		if (((data>>bit_index)&0x00000001) == 0){
 
 //			HAL_GPIO_WritePin(MBI5026_SDI_PORT,MBI5026_SDI_PIN,GPIO_PIN_RESET);
 			data_off;
