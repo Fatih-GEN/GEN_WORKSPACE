@@ -17,6 +17,8 @@
 #include"gpio.h"
 #include "tim.h"
 #include "can.h"
+#include "gen_display.h"
+
 
 gen_struct gen_s;
 
@@ -75,7 +77,7 @@ void gen_main(void)
 			 	  	  	  		  	  	  	  uint32_t ID_NUM = *(__IO uint16_t*) (Robot_Num_Flash_Add);
 			 	  	  	 	 	  	  	  	  	  	  }
 
-
+			 	  	  	 display_all();
 
 	}
 
