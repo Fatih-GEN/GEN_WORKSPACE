@@ -17,8 +17,11 @@ void MBI5026_Display(uint8_t _index);
 void MBI5026_SendData(uint32_t data);
 void SendData(void);
 void MBI5026_Off(uint8_t _index);
+void display_counter_up();
+void display_counter_down(void);
 
-
+//void r_number_assigment(int dizi[]);
+//void l_number_assigment(int dizi[])
 void num_18(void);
 void num_17(void);
 void num_16(void);

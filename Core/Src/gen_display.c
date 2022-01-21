@@ -33,18 +33,100 @@
 #define led_on   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 #define led_off   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 
-
+//
 //typedef struct{
 //
-//char Rseg_num[10]={"0x01DC0000","0x000C0000","0x00F80000","0x007C0000","0x012C0000","0x01740000","0x00F70000","0x001C0000","0x01FC0000","0x017C0000"};
-//char Lseg_num[10]={"0xEE000000","0x06000000","0x7C000000","0x3E000000","0x96000000","0xBA000000","0xFB000000","0x0E000000","0xFE0000","0xBE000000"};
-//char up=0x000E0000;
-//char down=0x000C0000;
-//char busy=0x00000880;
-//char mt=0x00000200;
-//char ns=0x00000500;
+//	int Rseg_num[10];
+//	int Lseg_num[10];
+//
+//
+//	int up;
+//	int down;
+//	int busy;
+//	int mt;
+//	int ns;
 //
 //}display_hexadecimal;
+
+//int up=0x000E0000;
+//	int down=0x000C0000;
+//	int busy=0x00000880;
+//	int mt=0x00000200;
+//	int ns=0x00000500;
+
+//
+//display_hexadecimal hexa_display;
+//display_hexadecimal hexa_icons;
+
+//
+//void r_number_assigment(int dizi[])
+//{
+//		int i=0;
+//
+//		for(i<10; i++;)
+//		{
+//
+//			dizi[i]=hexa_display.Rseg_num[i];
+//			i++;
+//
+//		}
+//}
+//
+//void l_number_assigment(int dizi[])
+//{
+//		int i=0;
+//
+//		for(i<10; i++;)
+//		{
+//
+//			dizi[i]=hexa_display.Lseg_num[i];
+//			i++;
+//
+//		}
+//}
+
+
+// added 2 digit counter on display
+void display_counter_up(void)
+{
+	uint32_t R_num[] = {0x01DC0000, 0x000C0000, 0x00F80000, 0x007C0000, 0x012C0000, 0x01740000, 0x01F40000, 0x001C0000, 0x01FC0000, 0x017C0000};
+	uint32_t L_num[] = {0xEE000000, 0x06000000, 0x7C000000, 0x3E000000, 0x96000000, 0xBA000000, 0xFB000000, 0x0E000000, 0xFE000000, 0xBE000000};
+	int j;
+
+	for(int i=0; i<10; i++)
+	{
+
+		for(int j=0; j<10; j++)
+		{
+				MBI5026_SendData(R_num[j]);
+				HAL_Delay(500);
+				MBI5026_SendData(L_num[i]);
+		}
+	j=0;
+
+
+}
+}
+void display_counter_down(void)
+{
+	uint32_t R_num[] = {0x01DC0000, 0x000C0000, 0x00F80000, 0x007C0000, 0x012C0000, 0x01740000, 0x01F40000, 0x001C0000, 0x01FC0000, 0x017C0000};
+	uint32_t L_num[] = {0xEE000000, 0x06000000, 0x7C000000, 0x3E000000, 0x96000000, 0xBA000000, 0xFB000000, 0x0E000000, 0xFE000000, 0xBE000000};
+	int j;
+
+	for(int i=9; i>=0; i--)
+	{
+
+		for(int j=9; j>=0; j--)
+		{
+				MBI5026_SendData(R_num[j]);
+				HAL_Delay(500);
+				MBI5026_SendData(L_num[i]);
+		}
+	j=9;
+
+
+}
+}
 
 void display_all(void)
 {
@@ -54,7 +136,11 @@ void display_all(void)
 	clk_on;
 }
 
-void MBI5026_SendData(uint32_t data){
+
+
+
+void MBI5026_SendData(uint32_t data)
+{
 	uint8_t bit_index;
 	//HAL_GPIO_WritePin(MBI5026_OE_PORT,MBI5026_OE_PIN,GPIO_PIN_SET);
 //	oe_off;
@@ -87,9 +173,9 @@ void MBI5026_SendData(uint32_t data){
 	latch_on;
 //	HAL_GPIO_WritePin(MBI5026_OE_PORT,MBI5026_OE_PIN,GPIO_PIN_RESET);
 //	oe_on;
-	oe_off
-	;
+	oe_off;
 }
+
 
 void MBI5026_Display(uint8_t _index){
 	if (_index == 8){

@@ -35,6 +35,7 @@ gen_struct gen_s;
 
 void gen_main(void)
 {
+
 	//uint8_t can_rx_buffer[8] = {0,0,0,0,0,0,0,0};
 	uint8_t can_tx_buffer[8] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};
 	 CAN_HandleTypeDef hcan;
@@ -52,17 +53,25 @@ void gen_main(void)
 
 
 
+
+
+
+
+
 	while(1)
 	{
 		gen_s.current_time = HAL_GetTick();
 
 
 
-		uint32_t sayi=0x012C0000;   // Sağ segment için 4 sayısını hexadecimal olarak atadım.
+		//uint32_t sayi=0x012C0000;   // Sağ segment için 4 sayısını hexadecimal olarak atadım.
 
-		MBI5026_SendData(sayi);    // sedndata fonksiyonuna direkt hexadecimal sayı yazdırdım.
+		//MBI5026_SendData(sayi);    // sedndata fonksiyonuna direkt hexadecimal sayı yazdırdım.
+	//	r_number_assigment(R_num);
 
 
+
+			//printing the elements
 
 
 		// button işlemi her 10 ms de bir kontrol edilir
@@ -85,7 +94,7 @@ void gen_main(void)
 			 	  	  	  		  	  	  	  uint32_t Robot_Num_Flash_Add = 0x08001000;
 			 	  	  	  		  	  	  	  uint32_t ID_NUM = *(__IO uint16_t*) (Robot_Num_Flash_Add);
 			 	  	  	 	 	  	  	  	  	  	  }
-
+			 display_counter_up();  // 2 digit up counter init
 
 
 	}
